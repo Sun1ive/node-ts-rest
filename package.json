@@ -1,0 +1,27 @@
+{
+  "name": "node-ts-rest",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "watch-ts": "tsc -w",
+    "watch-node": "nodemon dist/server.js",
+    "watch": "concurrently -k -p \"[{name}]\" -n \"TypeScript, Node\" -c \"yello.bold, cyan.bold\" \"yarn run watch-ts\" \"yarn run watch-node\""
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Sun1ive/node-ts-rest.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/Sun1ive/node-ts-rest/issues"
+  },
+  "homepage": "https://github.com/Sun1ive/node-ts-rest#readme",
+  "dependencies": {
+    "concurrently": "^3.5.1",
+    "express": "^4.16.3",
+    "nodemon": "^1.17.3"
+  }
+}
