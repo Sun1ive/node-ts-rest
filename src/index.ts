@@ -6,6 +6,8 @@ import * as koaCors from '@koa/cors';
 import * as koaLogger from 'koa-logger';
 import config from './config';
 
+import authRoutes from './routes/auth';
+
 function createApp(): Koa {
   const app = new Koa();
   const router = new KoaRouter();
@@ -14,15 +16,11 @@ function createApp(): Koa {
   app.use(koaCors());
   app.use(koaBody());
   app.use(koaLogger());
+
+  router.use('/auth', authRoutes.routes());
+
   app.use(router.allowedMethods());
   app.use(router.routes());
-
-  router.get('/', ctx => {
-    ctx.body = 'OK';
-  });
-  router.post('/', ctx => {
-    ctx.status = 404;
-  });
   return app;
 }
 
