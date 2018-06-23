@@ -38,6 +38,7 @@
   "devDependencies": {
     "@types/bcryptjs": "^2.4.1",
     "@types/chai": "^4.1.4",
+    "@types/jsonwebtoken": "^7.2.7",
     "@types/koa": "^2.0.46",
     "@types/koa-helmet": "^3.1.2",
     "@types/koa-logger": "^3.1.0",
@@ -46,9 +47,11 @@
     "@types/mocha": "^5.2.3",
     "@types/mongoose": "^5.0.18",
     "@types/supertest": "^2.0.4",
+    "@types/uuid": "^3.4.3",
     "chai": "^4.1.2",
     "mocha": "^5.2.0",
     "supertest": "^3.1.0",
-    "ts-node": "^6.1.2"
+    "ts-node": "^6.1.2",
+    "uuid": "^3.2.1"
   }
 }
