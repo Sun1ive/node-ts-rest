@@ -6,9 +6,8 @@ interface User {
   password: string;
 }
 
-export const findUser = (user: User): boolean => {
-  const result = usersCollection.some(u => u === user);
-  return result;
+export const findUser = async (login: string): Promise<User | undefined> => {
+  return usersCollection.find(user => user.login === login);
 };
 
 const usersCollection: User[] = [
