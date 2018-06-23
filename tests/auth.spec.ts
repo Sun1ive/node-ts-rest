@@ -16,4 +16,12 @@ describe('Testing auth routes', () => {
     expect(res.body.token).to.be.an('string');
     expect(res.body.refreshToken).to.be.an('string');
   });
+
+  it('User get 403 on login with invalid credentials', async () => {
+    const res = await app.post('/auth/login').send({
+      login: 'user1',
+      password: 'user1',
+    });
+    expect(res.status).to.eq(403);
+  });
 });

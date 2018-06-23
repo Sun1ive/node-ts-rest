@@ -9,6 +9,7 @@ import config from '../config';
 export const login = async (ctx: IRouterContext) => {
   const { login, password }: { login: string; password: string } = ctx.request.body;
   const user = await findUser(login);
+
   if (!user || !compareSync(password, user.password)) {
     ctx.throw(403);
   } else {
@@ -16,7 +17,7 @@ export const login = async (ctx: IRouterContext) => {
 
     ctx.status = 200;
     ctx.body = {
-      token: jwt.sign({ id: user.id }, config.jwtKey),
+      token: jwt.sign({ id: user.id }, config.jwtKey, { expiresIn: '24h' }),
       refreshToken,
     };
   }

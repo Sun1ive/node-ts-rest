@@ -4,22 +4,28 @@ import 'mocha';
 
 import server from '../src';
 
+const token =
+  'Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MSwiaWF0IjoxNTI5NzQ2ODA5fQ.9Ju9HVyY4vcRA6CUcyt8axvybzt7SlPwS5qMDpcgYRY';
+
 describe('Testing base routes', () => {
   const app = agent(server);
 
-  it('should fetch index page and get status 200', async () => {
+  it('should get 401 with no jwt token sent', async () => {
     const res = await app.get('/');
+    expect(res.status).to.eq(401);
+  });
+  it('should get 200 with jwt token sent', async () => {
+    const res = await app.get('/').set('Authorization', token);
     expect(res.status).to.eq(200);
-    expect(res.body).to.be.an('object');
   });
 
   it('should get 405 if method wasnt described', async () => {
-    const res = await app.put('/');
+    const res = await app.put('/').set('Authorization', token);
     expect(res.status).to.eq(405);
   });
 
   it('should get 404 for testing purposes', async () => {
-    const res = await app.post('/');
+    const res = await app.post('/').set('Authorization', token);
     expect(res.status).to.eq(404);
   });
 });
