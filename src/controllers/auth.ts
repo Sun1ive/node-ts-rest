@@ -1,5 +1,4 @@
 import * as jwt from 'jsonwebtoken';
-import * as uuid from 'uuid';
 import { compareSync } from 'bcryptjs';
 import { IRouterContext } from 'koa-router';
 
@@ -13,12 +12,9 @@ export const login = async (ctx: IRouterContext) => {
   if (!user || !compareSync(password, user.password)) {
     ctx.throw(403);
   } else {
-    const refreshToken = uuid();
-
     ctx.status = 200;
     ctx.body = {
-      token: jwt.sign({ id: user.id }, config.jwtKey, { expiresIn: '24h' }),
-      refreshToken,
+      token: jwt.sign({ id: user.id }, config.jwtKey, { expiresIn: '1h' }),
     };
   }
 };

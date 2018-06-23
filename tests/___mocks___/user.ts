@@ -1,6 +1,6 @@
 import { hashSync } from 'bcryptjs';
 
-interface User {
+export interface User {
   id: number;
   login: string;
   password: string;
@@ -10,7 +10,7 @@ export const findUser = async (login: string): Promise<User | undefined> => {
   return usersCollection.find(user => user.login === login);
 };
 
-const usersCollection: User[] = [
+export const usersCollection: User[] = [
   {
     id: 1,
     login: 'user',

@@ -8,7 +8,8 @@
     "build": "tsc",
     "start": "node dist/src/index.js",
     "test:index": "mocha -r ts-node/register tests/index.spec.ts",
-    "test:auth": "mocha -r ts-node/register tests/auth.spec.ts"
+    "test:auth": "mocha -r ts-node/register tests/auth.spec.ts",
+    "test:users": "mocha -r ts-node/register tests/users.spec.ts"
   },
   "repository": {
     "type": "git",

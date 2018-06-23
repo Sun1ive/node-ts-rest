@@ -8,6 +8,7 @@ import * as koaJWT from 'koa-jwt';
 import config from './config';
 
 import authRoutes from './routes/auth';
+import userRoutes from './routes/user';
 
 function createApp(): Koa {
   const app = new Koa();
@@ -22,8 +23,10 @@ function createApp(): Koa {
 
   router.use(koaJWT({ secret: config.jwtKey }));
 
+  router.use('/users', userRoutes.routes());
+
   router.get('/', ctx => (ctx.body = 'OK'));
-  router.post('/', ctx => (ctx.throw(404)));
+  router.post('/', ctx => ctx.throw(404));
 
   app.use(router.allowedMethods());
   app.use(router.routes());
